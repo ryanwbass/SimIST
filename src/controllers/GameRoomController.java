@@ -39,11 +39,13 @@ public class GameRoomController {
     private StoreObjects signObject;
     private static final int CHANGE_INTERVAL = 900000;
     protected Sequencer sequence;
+    private NPC npc;
 
     public GameRoomController(Customer inf_student, GameRoom inf_room) throws Exception {
         testFrame = new TestFrame();
 
         student = inf_student;
+        npc = new NPC(100, 100);
         stations = new FoodStations();
         room = inf_room;
         testFrame.setSize(room.getSize());
@@ -109,7 +111,7 @@ public class GameRoomController {
 
         @Override
         public void actionPerformed(ActionEvent ae) {
-
+            npc.NPCMovement();
             room.repaint();
 
             if (inventory != null) {

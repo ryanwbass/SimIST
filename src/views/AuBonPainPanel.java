@@ -40,12 +40,14 @@ public class AuBonPainPanel extends GameRoom {
     private Rectangle exitCompSci;
     private CharacterMovement characterMovement;
     private Customer student;
+    private NPC npc;
 
     private JLabel temp = new JLabel();
 
     public AuBonPainPanel(Customer inf_Student) {
         super();
         student = inf_Student;
+        npc = new NPC(100,100);
         setSize(800,600);
 
         setPreferredSize(new Dimension(800, 600));
@@ -92,7 +94,8 @@ public class AuBonPainPanel extends GameRoom {
         double playerWidth = getParent().getWidth() * .06;
         g.drawImage(new ImageIcon("floor.png").getImage(), 0, 0, getParent().getWidth(), getParent().getHeight(), null);
         g.drawImage(new ImageIcon(student.getAnimation()).getImage(), student.x, student.y, (int) playerWidth, (int) playerHeight, null);
-
+        g.drawImage(new ImageIcon("down1.png").getImage(), npc.getnPCX(), npc.getnPCY(), (int) playerWidth, (int) playerHeight, null);
+        
         refreshStations();
     }
 
