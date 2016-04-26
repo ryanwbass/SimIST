@@ -76,7 +76,7 @@ public class GameRoomController {
         /*
          STARTING TIMER
          */
-        gameTimer = new Timer(5, new GameTimer());
+        gameTimer = new Timer(100, new GameTimer());
         gameTimer.start();
         signTimer = new Timer(CHANGE_INTERVAL, new SignTimer());
         signTimer.start();
@@ -112,12 +112,12 @@ public class GameRoomController {
         @Override
         public void actionPerformed(ActionEvent ae) {
             npc.NPCMovement();
+            
             room.repaint();
 
             if (inventory != null) {
                 inventory.getContainer().repaint();
             }
-
         }
     }
 

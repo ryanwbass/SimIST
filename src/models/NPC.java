@@ -13,27 +13,32 @@ import java.util.Random;
  *
  * @author rwb5529
  */
-public class NPC extends Rectangle{
+public class NPC extends Rectangle {
+
     private String animation = "down1.png";
     private int nPCX = 100;
     private int nPCY = 100;
-    
-    public NPC(int npcX, int npcY)
-    {
-        x = npcX;
-        y = npcY;
+    int xDir=1;
+    int yDir=1;
+
+    public NPC(int nPCX, int nPCY) {
+        nPCX = this.nPCX;
+        nPCY = this.nPCY;
     }
-    
-    private int genRandNum(int max, int min){
+
+    private int genRandNum(int max, int min) {
         Random rand = new Random();
         int randomNum = rand.nextInt((max - min) + 1) + min;
         return randomNum;
     }
-    
-    public void NPCMovement(){
-        
-        this.setnPCX(this.getnPCX() + 1);
-        
+
+    public void NPCMovement() {
+        nPCY+=yDir;
+        if (nPCY == 300) {
+            yDir=-1;
+        } if (nPCY == 50) {
+            yDir=1;
+        }
 //        int stepsTaken = 0;
 //        int direction = 0; 
 //        if (stepsTaken == 0){
@@ -56,8 +61,7 @@ public class NPC extends Rectangle{
 //        }else{
 //            
 //        }
-        
-        
+
     }
 
     /**

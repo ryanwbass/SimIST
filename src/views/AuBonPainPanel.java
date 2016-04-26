@@ -4,6 +4,8 @@ import controllers.GameRoomController;
 import models.*;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.KeyListener;
@@ -43,6 +45,11 @@ public class AuBonPainPanel extends GameRoom {
     private NPC npc;
 
     private JLabel temp = new JLabel();
+    
+    private static final int TIMER_DELAY = 10;
+    
+    private int  xPos = 100;
+  private int yPos = 100;
 
     public AuBonPainPanel(Customer inf_Student) {
         super();
@@ -63,8 +70,20 @@ public class AuBonPainPanel extends GameRoom {
             }
         });
         this.setFocusable(true);
+        
+        
+        
+        javax.swing.Timer timer = new javax.swing.Timer(TIMER_DELAY, new ActionListener() {
+
+            public void actionPerformed(ActionEvent ae) {
+                npc.NPCMovement();
+                repaint();
+            }
+    });
+    timer.start();
     }
 
+    
     private void init() {
         counter = new Rectangle();
         coffee = new Rectangle();
@@ -112,4 +131,5 @@ public class AuBonPainPanel extends GameRoom {
         exitCompSci.setBounds(0, Math.round(getParent().getHeight() * .7f), 10, Math.round(getParent().getHeight() * .17f));
     }
 
+    
 }
