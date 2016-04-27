@@ -43,6 +43,7 @@ public class AuBonPainPanel extends GameRoom {
     private CharacterMovement characterMovement;
     private Customer student;
     private NPC npc;
+    private NPC npc2;
     
     private JLabel temp = new JLabel();
     
@@ -54,7 +55,8 @@ public class AuBonPainPanel extends GameRoom {
     public AuBonPainPanel(Customer inf_Student) {
         super();
         student = inf_Student;
-        npc = new NPC(100,100);
+        npc = new NPC(250,250);
+        npc2 = new NPC(350,250);
         setSize(800,600);
 
         setPreferredSize(new Dimension(800, 600));
@@ -76,7 +78,9 @@ public class AuBonPainPanel extends GameRoom {
         javax.swing.Timer timer = new javax.swing.Timer(TIMER_DELAY, new ActionListener() {
 
             public void actionPerformed(ActionEvent ae) {
+                avoidCollision(npc, npc2);
                 npc.NPCMovement();
+                npc2.NPCMovement();
                 repaint();
             }
     });
@@ -113,7 +117,8 @@ public class AuBonPainPanel extends GameRoom {
         double playerWidth = getParent().getWidth() * .06;
         g.drawImage(new ImageIcon("floor.png").getImage(), 0, 0, getParent().getWidth(), getParent().getHeight(), null);
         g.drawImage(new ImageIcon(student.getAnimation()).getImage(), student.x, student.y, (int) playerWidth, (int) playerHeight, null);
-        g.drawImage(new ImageIcon("down1.png").getImage(), npc.getnPCX(), npc.getnPCY(), (int) playerWidth, (int) playerHeight, null);
+        g.drawImage(new ImageIcon(npc.getAnimation()).getImage(), npc.getnPCX(), npc.getnPCY(), (int) playerWidth, (int) playerHeight, null);
+        g.drawImage(new ImageIcon(npc2.getAnimation()).getImage(), npc2.getnPCX(), npc2.getnPCY(), (int) playerWidth, (int) playerHeight, null);
         
         refreshStations();
     }
@@ -129,6 +134,16 @@ public class AuBonPainPanel extends GameRoom {
         soup.setBounds(Math.round(getParent().getWidth() * .18f), 0, Math.round(getParent().getWidth() * .18f), Math.round(getParent().getHeight() * .067f));
         cooler.setBounds(Math.round(getParent().getWidth() * .4f), 0, Math.round(getParent().getWidth() * .4f), Math.round(getParent().getHeight() * .08f));
         exitCompSci.setBounds(0, Math.round(getParent().getHeight() * .7f), 10, Math.round(getParent().getHeight() * .17f));
+    }
+    
+    public void avoidCollision(Rectangle a, Rectangle b){
+        a.setBounds(npc);
+        b.setBounds(npc2);
+        if(a.intersects(b)){
+            
+            npc.NPCMovement();
+            npc2.NPCMovement();
+        }
     }
 
     

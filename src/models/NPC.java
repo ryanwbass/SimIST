@@ -16,16 +16,15 @@ import java.util.Random;
 public class NPC extends Rectangle {
 
     private String animation = "down1.png";
-    private int nPCX = 250;
-    private int nPCY = 250;
-    int xDir=1;
-    int yDir=1;
+    private int nPCX;
+    private int nPCY;
     int stepsTaken = 0;
     int direction = 0; 
+    int waitTime = 0;
 
     public NPC(int nPCX, int nPCY) {
-        nPCX = this.nPCX;
-        nPCY = this.nPCY;
+        this.nPCX = nPCX;
+        this.nPCY = nPCY;
     }
 
     private int genRandNum(int max, int min) {
@@ -46,22 +45,26 @@ public class NPC extends Rectangle {
         
         
         
-        if (stepsTaken == 0){
+        if (stepsTaken == 0 ){
             direction = genRandNum(4,1);
         }else if(stepsTaken == 50){
             stepsTaken = 0;
             direction = genRandNum(4,1);
         }
-        if(direction == 1 && nPCX < 615){
+        if(direction == 1 && nPCX < 550){
+            setAnimation("right1.png");
             this.setnPCX(this.getnPCX() + 1);
             stepsTaken++;
-        }else if(direction == 2 && nPCY < 450){
+        }else if(direction == 2 && nPCY < 400){
+            setAnimation("down1.png");
             this.setnPCY(this.getnPCY() + 1);
             stepsTaken++;
         }else if(direction == 3 && nPCX > 140){
+            setAnimation("left2.png");
             this.setnPCX(this.getnPCX() - 1);
             stepsTaken++;
         }else if(direction == 4 && nPCY > 105){
+            setAnimation("up1.png");
             this.setnPCY(this.getnPCY() - 1);
             stepsTaken++;
         }else{
@@ -96,5 +99,19 @@ public class NPC extends Rectangle {
      */
     public void setnPCY(int nPCY) {
         this.nPCY = nPCY;
+    }
+
+    /**
+     * @return the animation
+     */
+    public String getAnimation() {
+        return animation;
+    }
+
+    /**
+     * @param animation the animation to set
+     */
+    public void setAnimation(String animation) {
+        this.animation = animation;
     }
 }
