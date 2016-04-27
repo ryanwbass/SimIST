@@ -16,10 +16,12 @@ import java.util.Random;
 public class NPC extends Rectangle {
 
     private String animation = "down1.png";
-    private int nPCX = 100;
-    private int nPCY = 100;
+    private int nPCX = 250;
+    private int nPCY = 250;
     int xDir=1;
     int yDir=1;
+    int stepsTaken = 0;
+    int direction = 0; 
 
     public NPC(int nPCX, int nPCY) {
         nPCX = this.nPCX;
@@ -33,34 +35,38 @@ public class NPC extends Rectangle {
     }
 
     public void NPCMovement() {
+        /*
         nPCY+=yDir;
         if (nPCY == 300) {
             yDir=-1;
         } if (nPCY == 50) {
             yDir=1;
         }
-//        int stepsTaken = 0;
-//        int direction = 0; 
-//        if (stepsTaken == 0){
-//            direction = genRandNum(1,4);
-//        }else if(stepsTaken == 5){
-//            direction = genRandNum(1,4);
-//        }
-//        if(direction == 1){
-//            this.setnPCX(x + 1);
-//            stepsTaken++;
-//        }else if(direction == 2){
-//            this.setnPCY(y + 1);
-//            stepsTaken++;
-//        }else if(direction == 3){
-//            this.setnPCX(x - 1);
-//            stepsTaken++;
-//        }else if(direction == 4){
-//            this.setnPCY(y - 1);
-//            stepsTaken++;
-//        }else{
-//            
-//        }
+        */
+        
+        
+        
+        if (stepsTaken == 0){
+            direction = genRandNum(4,1);
+        }else if(stepsTaken == 50){
+            stepsTaken = 0;
+            direction = genRandNum(4,1);
+        }
+        if(direction == 1 && nPCX < 615){
+            this.setnPCX(this.getnPCX() + 1);
+            stepsTaken++;
+        }else if(direction == 2 && nPCY < 450){
+            this.setnPCY(this.getnPCY() + 1);
+            stepsTaken++;
+        }else if(direction == 3 && nPCX > 140){
+            this.setnPCX(this.getnPCX() - 1);
+            stepsTaken++;
+        }else if(direction == 4 && nPCY > 105){
+            this.setnPCY(this.getnPCY() - 1);
+            stepsTaken++;
+        }else{
+            stepsTaken = 0;
+        }
 
     }
 
