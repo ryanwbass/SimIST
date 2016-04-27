@@ -43,7 +43,7 @@ public class AuBonPainPanel extends GameRoom {
     private CharacterMovement characterMovement;
     private Customer student;
     private NPC npc;
-
+    
     private JLabel temp = new JLabel();
     
     private static final int TIMER_DELAY = 10;
